@@ -1,0 +1,165 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:transparent}
+.db-wrap{width:100%;padding:0.5rem 0}
+.db-header{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface-1);border-radius:10px 10px 0 0;border:0.5px solid var(--border);border-bottom:2px solid #2a78d6;margin-bottom:2px}
+.db-title{font-size:15px;font-weight:500;color:var(--text-primary)}
+.db-sub{font-size:12px;color:var(--text-secondary);margin-top:1px}
+.tool-badge{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;margin-left:auto}
+.pbi{background:#F2C811;color:#1a1a1a}
+.tab{background:#E8762C;color:#fff}
+.tabs{display:flex;gap:6px;padding:8px 14px;background:var(--surface-1);border-left:0.5px solid var(--border);border-right:0.5px solid var(--border)}
+.tab-btn{font-size:11px;padding:4px 10px;border:0.5px solid var(--border);border-radius:4px;background:transparent;cursor:pointer;color:var(--text-secondary)}
+.tab-btn.active{background:#2a78d6;color:#fff;border-color:#2a78d6}
+.db-body{background:var(--surface-2);border:0.5px solid var(--border);border-top:none;border-radius:0 0 10px 10px;padding:12px;display:none}
+.db-body.active{display:block}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--surface-1);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px}
+.kpi-label{font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.kpi-val{font-size:20px;font-weight:500;color:var(--text-primary)}
+.kpi-delta{font-size:11px;margin-top:2px}
+.up{color:#1baf7a}.dn{color:#e34948}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chart-card{background:var(--surface-1);border:0.5px solid var(--border);border-radius:8px;padding:10px}
+.chart-title{font-size:12px;font-weight:500;color:var(--text-secondary);margin-bottom:8px}
+.chart-wrap{position:relative;width:100%}
+</style>
+<div class="db-wrap">
+
+<div class="db-header">
+  <i class="ti ti-chart-bar" aria-hidden="true" style="font-size:18px;color:#2a78d6"></i>
+  <div><div class="db-title">E-Commerce Analytics Portfolio</div><div class="db-sub">4 Power BI + 4 Tableau Dashboards · 3-Year DA Portfolio</div></div>
+  <span class="tool-badge pbi">Power BI</span>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showDB('pbi1')">PBI 1 · Sales Overview</button>
+  <button class="tab-btn" onclick="showDB('pbi2')">PBI 2 · Customer</button>
+  <button class="tab-btn" onclick="showDB('pbi3')">PBI 3 · Product</button>
+  <button class="tab-btn" onclick="showDB('pbi4')">PBI 4 · Operations</button>
+</div>
+
+<div id="pbi1" class="db-body active">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Total Revenue</div><div class="kpi-val">₹4.2Cr</div><div class="kpi-delta up">↑ 18.4% YoY</div></div>
+    <div class="kpi"><div class="kpi-label">Orders</div><div class="kpi-val">38,450</div><div class="kpi-delta up">↑ 12.1% YoY</div></div>
+    <div class="kpi"><div class="kpi-label">Avg Order Value</div><div class="kpi-val">₹1,092</div><div class="kpi-delta up">↑ 5.6% YoY</div></div>
+    <div class="kpi"><div class="kpi-label">Return Rate</div><div class="kpi-val">8.3%</div><div class="kpi-delta dn">↑ 1.1% YoY</div></div>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Monthly Revenue Trend (2024)</div>
+      <div class="chart-wrap" style="height:160px"><canvas id="c1" role="img" aria-label="Monthly revenue line chart 2024">Monthly revenue trend from Jan to Dec 2024.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Revenue by Category</div>
+      <div class="chart-wrap" style="height:160px"><canvas id="c2" role="img" aria-label="Revenue by product category bar chart">Electronics leads followed by Fashion and Home.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Order Volume by Channel</div>
+      <div class="chart-wrap" style="height:160px"><canvas id="c3" role="img" aria-label="Donut chart of order volume by channel">Mobile App 45%, Website 35%, Other 20%.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Weekly Orders — Heatmap Style</div>
+      <div class="chart-wrap" style="height:160px"><canvas id="c4" role="img" aria-label="Bar chart showing weekly order counts by day of week">Weekend orders peak on Saturdays.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<div id="pbi2" class="db-body">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Total Customers</div><div class="kpi-val">12,340</div><div class="kpi-delta up">↑ 9.2%</div></div>
+    <div class="kpi"><div class="kpi-label">New Customers</div><div class="kpi-val">3,210</div><div class="kpi-delta up">↑ 15%</div></div>
+    <div class="kpi"><div class="kpi-label">Repeat Rate</div><div class="kpi-val">61.4%</div><div class="kpi-delta up">↑ 3.2%</div></div>
+    <div class="kpi"><div class="kpi-label">Avg CLV</div><div class="kpi-val">₹8,430</div><div class="kpi-delta up">↑ 7.8%</div></div>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Customer Acquisition by Month</div><div class="chart-wrap" style="height:160px"><canvas id="c5" role="img" aria-label="Bar chart of new customers acquired each month">New customer acquisition peaks in Q4.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">RFM Segmentation</div><div class="chart-wrap" style="height:160px"><canvas id="c6" role="img" aria-label="Horizontal bar chart of RFM customer segments">Champions and loyal customers dominate.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Age Group Distribution</div><div class="chart-wrap" style="height:160px"><canvas id="c7" role="img" aria-label="Donut chart of customer age groups">25–34 age group is the largest segment.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">CLV by City Tier</div><div class="chart-wrap" style="height:160px"><canvas id="c8" role="img" aria-label="Bar chart comparing CLV across Tier 1, 2, 3 cities">Tier 1 cities have highest CLV.</canvas></div></div>
+  </div>
+</div>
+
+<div id="pbi3" class="db-body">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">SKUs Active</div><div class="kpi-val">2,840</div><div class="kpi-delta up">↑ 220 new</div></div>
+    <div class="kpi"><div class="kpi-label">Top Category</div><div class="kpi-val">Electronics</div><div class="kpi-delta up">34% revenue share</div></div>
+    <div class="kpi"><div class="kpi-label">Gross Margin</div><div class="kpi-val">38.2%</div><div class="kpi-delta dn">↓ 0.8%</div></div>
+    <div class="kpi"><div class="kpi-label">Out-of-Stock</div><div class="kpi-val">142</div><div class="kpi-delta dn">↑ 18 items</div></div>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Top 10 Products by Revenue</div><div class="chart-wrap" style="height:180px"><canvas id="c9" role="img" aria-label="Horizontal bar chart of top 10 products by revenue">Phone, Laptop, TV are top 3.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Category-wise Margin %</div><div class="chart-wrap" style="height:180px"><canvas id="c10" role="img" aria-label="Bar chart of gross margin by product category">Beauty has highest margin at 52%.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Price Range vs Units Sold</div><div class="chart-wrap" style="height:160px"><canvas id="c11" role="img" aria-label="Bar chart of units sold across price ranges">₹500–1000 price range sells most units.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Rating Distribution</div><div class="chart-wrap" style="height:160px"><canvas id="c12" role="img" aria-label="Bar chart of product ratings from 1 to 5 stars">Most products rated 4 stars.</canvas></div></div>
+  </div>
+</div>
+
+<div id="pbi4" class="db-body">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Avg Delivery Days</div><div class="kpi-val">3.2d</div><div class="kpi-delta up">↓ 0.4d improved</div></div>
+    <div class="kpi"><div class="kpi-label">On-Time %</div><div class="kpi-val">87.6%</div><div class="kpi-delta up">↑ 2.3%</div></div>
+    <div class="kpi"><div class="kpi-label">Return Rate</div><div class="kpi-val">8.3%</div><div class="kpi-delta dn">↑ 1.1%</div></div>
+    <div class="kpi"><div class="kpi-label">Fulfillment Cost</div><div class="kpi-val">₹148/order</div><div class="kpi-delta up">↓ 4.2%</div></div>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Delivery Time by Region</div><div class="chart-wrap" style="height:160px"><canvas id="c13" role="img" aria-label="Bar chart of average delivery days by region">NE India has longest delivery at 5.8 days.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Return Reasons Breakdown</div><div class="chart-wrap" style="height:160px"><canvas id="c14" role="img" aria-label="Donut chart of return reasons">Wrong size/item is the top return reason.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Monthly Fulfillment Cost Trend</div><div class="chart-wrap" style="height:160px"><canvas id="c15" role="img" aria-label="Line chart of fulfillment cost per order over months">Cost declining steadily through 2024.</canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Warehouse Capacity Utilization</div><div class="chart-wrap" style="height:160px"><canvas id="c16" role="img" aria-label="Bar chart of warehouse capacity utilization by location">Mumbai warehouse at 94% capacity.</canvas></div></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showDB(id){
+  document.querySelectorAll('.db-body').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  setTimeout(()=>renderActive(id),50);
+}
+
+const BLUE='#2a78d6',AQUA='#1baf7a',AMB='#eda100',GRN='#008300',VIO='#4a3aa7',RED='#e34948',MAG='#e87ba4',ORG='#eb6834';
+const cats=['Electronics','Fashion','Home','Beauty','Sports','Books'];
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function mk(id,type,labels,datasets,opts){
+  const el=document.getElementById(id);if(!el)return;
+  new Chart(el,{type,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},...(opts?.plugins||{})},scales:opts?.scales||{},...(opts||{})}});
+}
+
+function renderActive(id){
+if(id==='pbi1'){
+  mk('c1','line',months,[{label:'Revenue',data:[28,24,32,35,38,42,45,41,48,52,58,67],borderColor:BLUE,backgroundColor:'rgba(42,120,214,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:BLUE}]);
+  mk('c2','bar',cats,[{label:'Revenue(L)',data:[142,98,76,54,41,18],backgroundColor:[BLUE,AQUA,AMB,MAG,GRN,ORG],borderRadius:4}]);
+  mk('c3','doughnut',['Mobile App','Website','Social','Other'],[{data:[45,35,12,8],backgroundColor:[BLUE,AQUA,AMB,ORG]}],{plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10}}}});
+  mk('c4','bar',['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],[{label:'Orders',data:[920,1050,1100,1080,1380,1820,1540],backgroundColor:[AMB,AMB,AMB,AMB,AQUA,BLUE,AQUA],borderRadius:4}]);
+}
+if(id==='pbi2'){
+  mk('c5','bar',months,[{label:'New Customers',data:[220,180,260,310,290,340,380,360,420,480,560,410],backgroundColor:AQUA,borderRadius:4}]);
+  const rfmL=['Champions','Loyal','Potential','At Risk','Lost'];
+  mk('c6','bar',rfmL,[{label:'Count',data:[3200,2800,2100,1600,640],backgroundColor:[BLUE,AQUA,AMB,ORG,RED],borderRadius:4,indexAxis:'y'}],{indexAxis:'y'});
+  mk('c7','doughnut',['18–24','25–34','35–44','45–54','55+'],[{data:[18,34,28,14,6],backgroundColor:[AMB,BLUE,AQUA,VIO,ORG]}],{plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10}}}});
+  mk('c8','bar',['Tier 1','Tier 2','Tier 3'],[{label:'Avg CLV (₹)',data:[12400,7800,4200],backgroundColor:[BLUE,AQUA,AMB],borderRadius:4}]);
+}
+if(id==='pbi3'){
+  const prods=['Smartphone','Laptop','Smart TV','Headphones','Saree','Running Shoes','Mixer','Skincare Kit','Novel Set','Yoga Mat'];
+  mk('c9','bar',prods,[{label:'Revenue(L)',data:[42,38,31,22,18,16,14,12,9,7],backgroundColor:BLUE,borderRadius:4,indexAxis:'y'}],{indexAxis:'y',scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9}}}}});
+  mk('c10','bar',cats,[{label:'Margin %',data:[28,41,33,52,38,24],backgroundColor:[BLUE,AQUA,AMB,MAG,GRN,ORG],borderRadius:4}],{scales:{y:{max:70}}});
+  mk('c11','bar',['<₹500','₹500–1K','₹1K–5K','₹5K–10K','>₹10K'],[{label:'Units',data:[4200,8900,6100,2800,1100],backgroundColor:AQUA,borderRadius:4}]);
+  mk('c12','bar',['1★','2★','3★','4★','5★'],[{label:'Products',data:[42,98,320,1240,1140],backgroundColor:[RED,ORG,AMB,AQUA,BLUE],borderRadius:4}]);
+}
+if(id==='pbi4'){
+  mk('c13','bar',['North','South','West','East','NE'],[{label:'Days',data:[2.8,3.1,2.6,3.9,5.8],backgroundColor:[AQUA,AQUA,BLUE,AMB,RED],borderRadius:4}]);
+  mk('c14','doughnut',['Wrong item','Size issue','Damaged','Late delivery','Changed mind'],[{data:[32,28,18,14,8],backgroundColor:[RED,ORG,AMB,VIO,AQUA]}],{plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10}}}});
+  mk('c15','line',months,[{label:'Cost/Order(₹)',data:[168,164,162,158,155,152,150,149,148,146,145,144],borderColor:GRN,backgroundColor:'rgba(0,131,0,0.07)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:GRN}]);
+  mk('c16','bar',['Mumbai','Delhi','Bangalore','Hyderabad','Kolkata'],[{label:'Utilization%',data:[94,88,76,71,63],backgroundColor:[RED,ORG,AMB,AQUA,GRN],borderRadius:4}],{scales:{y:{max:100}}});
+}
+}
+setTimeout(()=>renderActive('pbi1'),200);
+</script>
